@@ -22,16 +22,16 @@ class User
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function createUser(string $name, string $email, string $phone): void
+    public function createUser(string $name, string $email, string $phone, string $avatarPath): void
     {
-        $stmt = $this->pdo->prepare('INSERT INTO users (name, email, phone) VALUES (?, ?, ?)');
-        $stmt->execute([$name, $email, $phone]);
+        $stmt = $this->pdo->prepare('INSERT INTO users (name, email, phone, avatar) VALUES (?, ?, ?, ?)');
+        $stmt->execute([$name, $email, $phone, $avatarPath]);
     }
 
-    public function updateUser(int $id, string $name, string $email, string $phone): void
+    public function updateUser(int $id, string $name, string $email, string $phone, string $avatarPath): void
     {
-        $stmt = $this->pdo->prepare('UPDATE users SET name = ?, email = ?, phone = ? WHERE id = ?');
-        $stmt->execute([$name, $email, $phone, $id]);
+        $stmt = $this->pdo->prepare('UPDATE users SET name = ?, email = ?, phone = ?, avatar = ? WHERE id = ?');
+        $stmt->execute([$name, $email, $phone, $avatarPath, $id]);
     }
 
     public function deleteUser(int $id): void

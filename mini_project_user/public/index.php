@@ -1,7 +1,8 @@
 <?php
-global $userModel;
 require_once __DIR__ . '/../src/controller/UserController.php';
-$users = $userModel->getUsers();
+if (isset($userModel)) {
+    $users = $userModel->getUsers();
+}
 
 ?>
 <!DOCTYPE html>
@@ -15,6 +16,7 @@ $users = $userModel->getUsers();
 <table border="1" cellpadding="8">
     <tr>
         <th>ID</th>
+        <th>Avatar</th>
         <th>Name</th>
         <th>Email</th>
         <th>Phone</th>
@@ -23,6 +25,11 @@ $users = $userModel->getUsers();
     <?php foreach ($users as $user): ?>
     <tr>
         <td><?= htmlspecialchars($user['id']) ?></td>
+        <td>
+            <img src="<?= htmlspecialchars($user['avatar']) ?>"
+                 alt="Avatar" width="50" height="50"
+                 style="object-fit: cover; border-radius: 50%;">
+        </td>
         <td><?= htmlspecialchars($user['name']) ?></td>
         <td><?= htmlspecialchars($user['email']) ?></td>
         <td><?= htmlspecialchars($user['phone']) ?></td>
