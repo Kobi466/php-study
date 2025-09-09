@@ -1,17 +1,22 @@
 <?php
 require_once __DIR__ . '/../src/controller/UserController.php';
+session_start();
+if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
 if (isset($userModel)) {
     $users = $userModel->getUsers();
 }
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-        <title>User List</title>
+        <title>Users onboard System</title>
 </head>
 <body>
-    <h1>User List</h1>
+    <h1>Users onboard System</h1>
+    <h2>Welcome, <?php $_SESSION['user']['name']?>|<a href="logout.php">Logout</a></h2>
     <a href="create.php">Add user</a>
 <table border="1" cellpadding="8">
     <tr>

@@ -12,8 +12,9 @@ try
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     phone VARCHAR(20),
-    avatar VARCHAR(255) NOT NULL DEFAULT '/uploads/avatars/default.png'
+    avatar VARCHAR(255) DEFAULT '/uploads/avatars/default.png'
     );");
 //    echo "DB Connected";
 }catch (PDOException $e)

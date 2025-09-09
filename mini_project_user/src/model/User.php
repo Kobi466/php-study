@@ -22,10 +22,11 @@ class User
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function createUser(string $name, string $email, string $phone, string $avatarPath): void
+    public function createUser(string $name, string $email, string $password, string $phone, string $avatarPath): void
     {
-        $stmt = $this->pdo->prepare('INSERT INTO users (name, email, phone, avatar) VALUES (?, ?, ?, ?)');
-        $stmt->execute([$name, $email, $phone, $avatarPath]);
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+        $stmt = $this->pdo->prepare('INSERT INTO users (name, email, password, phone, avatar) VALUES (?, ?, ?, ?, ?)');
+        $stmt->execute([$name, $email, $hash, $phone, $avatarPath]);
     }
 
     public function updateUser(int $id, string $name, string $email, string $phone, string $avatarPath): void
@@ -38,5 +39,22 @@ class User
     {
         $stmt = $this->pdo->prepare('DELETE FROM users WHERE id = ?');
         $stmt->execute([$id]);
+    }
+
+    public function login(string $email, string $password)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM users WHERE email = ? LIMIT 1');
+        $stmt->execute([$email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($user && password_verify($password, $user['password'])) {
+            return $user;
+        }
+        return false;
+    }
+
+    public function register($name, $email, $password){
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+        $stmt = $this->pdo->prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
+        $stmt->execute([$name, $email, $hash]);
     }
 }
