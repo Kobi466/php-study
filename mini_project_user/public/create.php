@@ -36,9 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 }
 ?>
 <form method="post" enctype="multipart/form-data">
+<!--    Name: <textarea name="name" id="editor"></textarea>-->
+<!--    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>-->
+<!--    <script>-->
+<!--        CKEDITOR.replace('editor');-->
+<!--    </script>-->
     Name: <input type="text" name="name" required/>
     Email: <input type="text" name="email" required/>
     Phone: <input type="text" name="phone" required/>
     Avatar: <input type="file" name="avatar" accept="image/*" />
+
     <input type="submit" value="Create" />
 </form>
