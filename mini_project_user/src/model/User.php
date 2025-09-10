@@ -15,6 +15,34 @@ class User
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Lấy danh sách người dùng cho một trang cụ thể.
+     *
+     * @param int $page Số trang hiện tại.
+     * @param int $perPage Số lượng người dùng trên mỗi trang.
+     * @return array Danh sách người dùng.
+     */
+    public function getUsersPaginated(int $page = 1, int $perPage = 5): array
+    {
+        $offset = ($page - 1) * $perPage;
+        $stmt = $this->pdo->prepare('SELECT * FROM users ORDER BY id DESC LIMIT :limit OFFSET :offset');
+        $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Lấy tổng số người dùng trong cơ sở dữ liệu.
+     *
+     * @return int Tổng số người dùng.
+     */
+    public function getTotalUserCount(): int
+    {
+        $stmt = $this->pdo->query('SELECT COUNT(*) FROM users');
+        return (int) $stmt->fetchColumn();
+    }
+
     public function getById(int $id): array|false
     {
         $stmt = $this->pdo->prepare('SELECT * FROM users WHERE id = ?');
