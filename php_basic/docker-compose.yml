@@ -1,9 +1,32 @@
 version: "3.9"
 services:
   php:
-    image: php:8.2-apache
+    build: .
     container_name: php_basic
     volumes:
       - ./src:/var/www/html
     ports:
       - "8099:80"
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: product
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80"
+
+volumes:
+  db_data:
