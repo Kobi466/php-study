@@ -4,7 +4,7 @@
 
 ## Tính năng
 
-*   Xem danh sách người dùng.
+*   Xem danh sách người dùng
 *   Thêm người dùng mới với tên, email, điện thoại và ảnh đại diện.
 *   Cập nhật thông tin người dùng.
 *   Xóa người dùng.
