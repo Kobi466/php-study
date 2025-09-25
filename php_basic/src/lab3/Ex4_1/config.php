@@ -1,8 +1,8 @@
 <?php
 $host = 'db';
-$user = 'user';
-$pass = 'userpass';
-$db = 'product';
+$user = 'root';
+$pass = 'root';
+$db = 'lab3';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
