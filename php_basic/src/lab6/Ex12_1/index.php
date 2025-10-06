@@ -73,4 +73,5 @@ switch($action) {
     header("Location: .");
     break;
 }
+
 ?>

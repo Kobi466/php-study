@@ -21,6 +21,7 @@ switch( $action ) {
     }
     break;
 
+
 case 'delete':
     $task_index = filter_input(INPUT_POST, 'taskid', FILTER_VALIDATE_INT);
     if ($task_index === NULL || $task_index === FALSE) {
