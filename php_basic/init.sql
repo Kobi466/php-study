@@ -50,3 +50,18 @@ INSERT INTO products (categoryID, productCode, productName, listPrice) VALUES
 (2, 'hofner', 'Hofner Icon', '499.99'),
 (3, 'ludwig', 'Ludwig 5-piece Drum Set with Cymbals', '699.99'),
 (3, 'tama', 'Tama 5-Piece Drum Set with Cymbals', '799.99');
+
+DROP DATABASE IF EXISTS email_demo;
+CREATE DATABASE email_demo;
+USE email_demo;
+
+CREATE TABLE User(
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     name VARCHAR(100) NOT NULL,
+     email VARCHAR(100) NOT NULL UNIQUE
+);
+
+INSERT INTO User (name, email) VALUES
+ ('Peter Parker', 'peter.parker@example.com'),
+ ('Mary Jane', 'mary.jane@example.com'),
+ ('Tony Stark', 'tony.stark@example.com');
