@@ -5,7 +5,7 @@ $id = $_GET['id'];
 if (isset($userModel)) {
     $user = $userModel->getById($id);
 }
-
+  
 if($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $userNames = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
