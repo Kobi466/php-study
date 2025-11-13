@@ -65,3 +65,14 @@ INSERT INTO User (name, email) VALUES
  ('Peter Parker', 'peter.parker@example.com'),
  ('Mary Jane', 'mary.jane@example.com'),
  ('Tony Stark', 'tony.stark@example.com');
+
+CREATE DATABASE IF NOT EXISTS QLHocPhan;
+
+USE QLHocPhan;
+
+CREATE TABLE IF NOT EXISTS GiangVien (
+                                         MaGV VARCHAR(10) PRIMARY KEY,
+    HoTen VARCHAR(255) NOT NULL,
+    HinhAnh VARCHAR(255),
+    TongSoLop INT NOT NULL
+    );
